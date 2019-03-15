@@ -27,14 +27,15 @@ TW.Runtime.Widgets.timeseriesplot= function () {
 	            		if (i==0) {
 	            			yArray.push([]);
 	            		}
-	            		yArray[j-1].push(rows[i][properties['YDataField' + j]])
+	            		let y = rows[i][properties['YDataField' + j]]
+	            		yArray[j-1].push(y)
 	            	}
 	            	
 	            }
 	            
 	            for (i=0;i<properties['NumberOfSeries'];i++) {
 	            	let trace = new Object()
-	            	trace.index = i
+	            	trace.series = i+1;
 		            trace.x = x;
 		            trace.y = yArray[i];
 		            trace.type = 'scatter';
@@ -46,27 +47,29 @@ TW.Runtime.Widgets.timeseriesplot= function () {
 	            chart.draw(data);
 	        }
 		 
-			 for (i=1;i <= Number(properties['NumberOfSeries']);i++) {
+			 for (let i=1;i <= Number(properties['NumberOfSeries']);i++) {
 		        	if (updatePropertyInfo.TargetProperty === 'DataSource'+i) {
+		        		console.log(i);
 		        		const rows = updatePropertyInfo.ActualDataRows;
-			            let data = []
-			            let x = [];
-			            let y = [];
-			            
-			            for (let j=0;j<rows.length;j++) {
-			            	x.push(rows[j][properties['XDataField' + i]])
-			            	y.push(rows[j][properties['YDataField' + i]])
-			            }
-			            
-			            let trace = new Object();
-			            trace.index = i-1;
-			            trace.x = x;
-			            trace.y = y;
-			            trace.type = 'scatter';
-			            data.push(trace)
-			            
-			            chart.draw(data);
-			            
+		        		if (rows.length > 0) {
+				            let data = []
+				            let x = [];
+				            let y = [];
+				            
+				            for (let j=0;j<rows.length;j++) {
+				            	x.push(rows[j][properties['XDataField' + i]])
+				            	y.push(rows[j][properties['YDataField' + i]])
+				            }
+				            
+				            let trace = new Object();
+				            trace.series = i;
+				            trace.x = x;
+				            trace.y = y;
+				            trace.type = 'scatter';
+				            data.push(trace)
+				            
+				            chart.draw(data);
+		        		}
 		        	}
 			 }
 	};
