@@ -1,0 +1,6 @@
+build_framework=ANT
+eclipse.preferences.version=1
+min_thingworx_version=8.0.0
+package_version=1.0.0
+project_vendor=Thingworx Labs
+sdk_location=D\:\\TW_JavaSDK\\ThingWorx-Extension-SDK-8-0-0.zip
