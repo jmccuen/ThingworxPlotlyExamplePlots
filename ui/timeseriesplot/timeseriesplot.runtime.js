@@ -46,16 +46,16 @@ TW.Runtime.Widgets.timeseriesplot= function () {
 	            chart.draw(data);
 	        }
 		 
-			 for (i=1;i <= Number(widgetProperties['NumberOfSeries']);i++) {
+			 for (i=1;i <= Number(properties['NumberOfSeries']);i++) {
 		        	if (updatePropertyInfo.TargetProperty === 'DataSource'+i) {
 		        		const rows = updatePropertyInfo.ActualDataRows;
 			            let data = []
 			            let x = [];
 			            let y = [];
 			            
-			            for (let i=0;i<rows.length;i++) {
-			            	x.push(rows[i][properties['XDataField' + i]])
-			            	y.push(rows[i][properties['YDataField' + i]])
+			            for (let j=0;j<rows.length;j++) {
+			            	x.push(rows[j][properties['XDataField' + i]])
+			            	y.push(rows[j][properties['YDataField' + i]])
 			            }
 			            
 			            let trace = new Object();

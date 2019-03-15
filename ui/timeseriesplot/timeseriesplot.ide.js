@@ -34,5 +34,7 @@ TW.IDE.Widgets.timeseriesplot = function () {
 		chart.draw(data);
 		
 	}
+	
+	
 
 };
