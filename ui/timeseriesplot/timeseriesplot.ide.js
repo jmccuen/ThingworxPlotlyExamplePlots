@@ -1,6 +1,6 @@
 TW.IDE.Widgets.timeseriesplot = function () {
 
-	let chart = new TWIDEChart(this,16,'2d',4,true);
+	let chart = new TWIDEChart(this,24,'2d',4,true);
 	
 	this.widgetIconUrl = function() {
 		return  "'../Common/extensions/PlotlyPlots/ui/timeseriesplot/plotlyicon.png'";
@@ -17,6 +17,7 @@ TW.IDE.Widgets.timeseriesplot = function () {
 	this.renderHtml = function () {
 		
 		return 	'<div class="widget-content widget-timeseriesplot">' +
+				'<div id="' + this.jqElementId + '-chart"></div>' +
 				'</div>';
 	};
 	

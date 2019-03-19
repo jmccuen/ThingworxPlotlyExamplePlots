@@ -143,4 +143,11 @@ TW.Runtime.Widgets.timeseriesplot= function () {
 		
 	};
 	
+    this.runtimeProperties = function () {
+        return {
+            'needsDataLoadingAndError': true,
+	        'supportsAutoResize': true
+        };
+    };
+	
 }; 
