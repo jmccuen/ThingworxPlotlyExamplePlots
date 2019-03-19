@@ -1,4 +1,4 @@
-TW.IDE.Widgets.timeseriesplot = function () {
+TW.IDE.Widgets.streamingplot = function () {
 
 	let chart = new TWIDEChart(this,16,'2d',4,true);
 	
@@ -9,7 +9,7 @@ TW.IDE.Widgets.timeseriesplot = function () {
 	this.widgetProperties = function () {
 		
 		let properties = chart.getProperties();
-		properties.name = "Timeseries Plot";
+		properties.name = "Streaming Plot";
 		return properties;
 		
 	};
