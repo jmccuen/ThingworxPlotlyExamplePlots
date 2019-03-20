@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Entities>
     <ExtensionPackages>
-        <ExtensionPackage dependsOn="" description="" minimumThingWorxVersion="6.0.0" name="PlotlyPlots" packageVersion="1.0.36" vendor="Thingworx Labs"> 
+        <ExtensionPackage dependsOn="" description="" minimumThingWorxVersion="6.0.0" name="PlotlyPlots" packageVersion="1.0.7" vendor="Thingworx Labs"> 
         </ExtensionPackage>
     </ExtensionPackages>
     <Widgets>
@@ -27,6 +27,14 @@
                 <FileResource description="" file="streamingplot.ide.css" isDevelopment="true" isRuntime="false" type="CSS"/>
                 <FileResource description="" file="streamingplot.runtime.js" isDevelopment="false" isRuntime="true" type="JS"/>
                 <FileResource description="" file="streamingplot.runtime.css" isDevelopment="false" isRuntime="true" type="CSS"/>
+            </UIResources>
+        </Widget>
+        <Widget name="simplebarplot">
+            <UIResources>
+                <FileResource description="" file="simplebarplot.ide.js" isDevelopment="true" isRuntime="false" type="JS"/>
+                <FileResource description="" file="simplebarplot.ide.css" isDevelopment="true" isRuntime="false" type="CSS"/>
+                <FileResource description="" file="simplebarplot.runtime.js" isDevelopment="false" isRuntime="true" type="JS"/>
+                <FileResource description="" file="simplebarplot.runtime.css" isDevelopment="false" isRuntime="true" type="CSS"/>
             </UIResources>
         </Widget>
     </Widgets>

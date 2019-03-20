@@ -1,7 +1,8 @@
 TW.Runtime.Widgets.streamingplot= function () {
-	let chart;
+	
 	let thisWidget = this;
 	let properties = this.properties;
+	let chart = new TWRuntimeChart(thisWidget);
 	
 	this.renderHtml = function () {
 		return 	'<div class="widget-content widget-streamingplot">' +
@@ -9,7 +10,6 @@ TW.Runtime.Widgets.streamingplot= function () {
 	};
 
 	this.afterRender = function () {
-		chart = new TWRuntimeChart(this);
 		chart.render();
 	};
 
@@ -89,11 +89,5 @@ TW.Runtime.Widgets.streamingplot= function () {
 		        	}
 			 }
 	};
-	
-    this.runtimeProperties = function () {
-        return {
-            'needsDataLoadingAndError': true,
-        };
-    };
 	
 }; 

@@ -1,7 +1,8 @@
 TW.Runtime.Widgets.pieplot= function () {
-	let chart;
+	
 	let thisWidget = this;
 	let properties = this.properties;
+	let chart = new TWRuntimeChart(thisWidget);
 	
 	this.renderHtml = function () {
 		return 	'<div class="widget-content widget-pieplot">' +
@@ -9,7 +10,6 @@ TW.Runtime.Widgets.pieplot= function () {
 	};
 
 	this.afterRender = function () {
-		chart = new TWRuntimeChart(this);
 		chart.render();
 		
 	};

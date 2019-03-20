@@ -1,7 +1,8 @@
 TW.Runtime.Widgets.timeseriesplot= function () {
-	let chart;
+	
 	let thisWidget = this;
 	let properties = this.properties;
+	let chart = new TWRuntimeChart(thisWidget);
 	
 	this.renderHtml = function () {
 		return 	'<div class="widget-content widget-timeseriesplot">' +
@@ -9,7 +10,6 @@ TW.Runtime.Widgets.timeseriesplot= function () {
 	};
 
 	this.afterRender = function () {
-		chart = new TWRuntimeChart(this);
 		chart.render();
 	};
 	
@@ -47,9 +47,9 @@ TW.Runtime.Widgets.timeseriesplot= function () {
 		 
 		 let values;
 		 if (dynamic) {  
-			 values = getDynamicValues(it) ;
+			 values = chart.getDynamicXY(it) ;
 		 } else {
-			 values = getValues(it);
+			 values = chart.getXY(it);
 		 };
 		 
 		 let data = [];
@@ -68,57 +68,6 @@ TW.Runtime.Widgets.timeseriesplot= function () {
 		 return data;
 	};
 	
-	function getValues(it) {
-		const rows = it.ActualDataRows;
-		let values = new Object();
-        let x = [];       
-        let y = new Object();
-        
-        for (let i=0;i<rows.length;i++) {
-        	x.push(rows[i][properties['XAxisField']]);
-       	for (let j=1;j<=properties['NumberOfSeries'];j++) {
-       		if (properties['YDataField' + j]) {
-					if (!y[j]) {	
-						y[j] = new Object();
-						y[j].values = [];
-					};
-		    		y[j].values.push(rows[i][properties['YDataField' + j]]);
-       		};
-       	};
-        };
-        
-        values.x = x;
-        values.y = y;
-        
-        return values;
-	}
-	function getDynamicValues(it) {
-		const rows = it.ActualDataRows;
-		let values = new Object();
-        let x = [];
-        let y = {};
-		let shape = it.DataShape;
-		
-		for (let i=0;i<rows.length;i++) {
-			let count = 1;
-			x.push(rows[i][properties['XAxisField']]);
-			for (let key in shape) {
-				if (shape[key].baseType === 'NUMBER' || shape[key].baseType === 'INTEGER') {
-					if (!y[count]) {	
-						y[count] = new Object();
-						y[count].values = [];
-					};
-					y[count].values.push(rows[i][key]);
-					count++;
-				};
-			};
-		};
-		values.x = x;
-		values.y = y;
-		
-        return values
-	};
-	
 	function getMultiData(it,series) {
 		const rows = it.ActualDataRows;
         let data = []
@@ -126,11 +75,10 @@ TW.Runtime.Widgets.timeseriesplot= function () {
         let y = [];
         chart.chartInfo['DataSource' + series] = new Object();
         chart.chartInfo['DataSource' + series].length = rows.length;
-        for (let j=0;j<rows.length;j++) {
-        	x.push(rows[j][properties['XDataField' + series]]);
-        	y.push(rows[j][properties['YDataField' + series]]);
+        for (let i=0;i<rows.length;i++) {
+        	x.push(rows[i][properties['XDataField' + series]]);
+        	y.push(rows[i][properties['YDataField' + series]]);
         }
-        
         let trace = new Object();
         trace.dataSource = 'DataSource' + series;
         trace.series = series;
@@ -142,12 +90,5 @@ TW.Runtime.Widgets.timeseriesplot= function () {
         return data;
 		
 	};
-	
-    this.runtimeProperties = function () {
-        return {
-            'needsDataLoadingAndError': true,
-	        'supportsAutoResize': true
-        };
-    };
 	
 }; 
