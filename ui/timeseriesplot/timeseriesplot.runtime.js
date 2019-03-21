@@ -60,6 +60,9 @@ TW.Runtime.Widgets.timeseriesplot= function () {
 	         	trace.dataSource = 'Data';
 		        trace.x = values.x;
 		        trace.y = values.y[key].values;
+		        if (properties['TooltipText' + key]) {
+		        	trace.text = values.y[key].text;
+		        }
 		        trace.type = 'scatter';
 		        data.push(trace);
         	};

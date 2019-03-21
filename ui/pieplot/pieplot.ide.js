@@ -1,6 +1,6 @@
 TW.IDE.Widgets.pieplot = function () {
 
-	let chart = new TWIDEChart(this,0,'pie',0,false);
+	let chart = new TWIDEChart(this,1,'pie',1,false);
 	
 	this.widgetIconUrl = function() {
 		return  "'../Common/extensions/PlotlyPlots/ui/pieplot/plotlyicon.png'";
@@ -46,7 +46,5 @@ TW.IDE.Widgets.pieplot = function () {
 		chart.draw(data);
 		
 	}
-
-	
 
 };

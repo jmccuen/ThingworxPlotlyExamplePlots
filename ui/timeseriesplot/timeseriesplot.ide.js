@@ -17,7 +17,6 @@ TW.IDE.Widgets.timeseriesplot = function () {
 	this.renderHtml = function () {
 		
 		return 	'<div class="widget-content widget-timeseriesplot">' +
-				'<div id="' + this.jqElementId + '-chart"></div>' +
 				'</div>';
 	};
 	
@@ -35,7 +34,6 @@ TW.IDE.Widgets.timeseriesplot = function () {
 		chart.draw(data);
 		
 	}
-	
 	
 
 };

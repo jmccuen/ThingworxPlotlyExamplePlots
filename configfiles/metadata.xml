@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Entities>
     <ExtensionPackages>
-        <ExtensionPackage dependsOn="" description="" minimumThingWorxVersion="6.0.0" name="PlotlyPlots" packageVersion="1.0.7" vendor="Thingworx Labs"> 
+        <ExtensionPackage dependsOn="" description="" minimumThingWorxVersion="6.0.0" name="PlotlyPlots" packageVersion="1.0.10" vendor="Thingworx Labs"> 
         </ExtensionPackage>
     </ExtensionPackages>
     <Widgets>
