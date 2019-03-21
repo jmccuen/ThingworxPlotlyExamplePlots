@@ -10,6 +10,25 @@ TW.IDE.Widgets.timeseriesplot = function () {
 		
 		let properties = chart.getProperties();
 		properties.name = "Timeseries Plot";
+		properties.properties['ShowMarkers'] = {
+									                'description': '',
+									                'baseType': 'BOOLEAN',
+									                'defaultValue': false
+									            };
+		
+		let options = [
+			{ value: 'linear', text: 'Linear' },
+			{ value: 'spline', text: 'Smooth' },
+			{ value: 'hv', text: 'HV Step' },
+			{ value: 'vh', text: 'VH Step' },
+			{ value: 'hvh', text: 'HVH Step' },
+			{ value: 'vhv', text: 'VHV Step' }
+		]
+		for (let i=1;i<=chart.MAX_SERIES;i++) {
+			properties.properties['SeriesType' + i]['defaultValue'] = 'linear';
+			properties.properties['SeriesType' + i]['selectOptions'] = options;
+			
+		}
 		return properties;
 		
 	};
