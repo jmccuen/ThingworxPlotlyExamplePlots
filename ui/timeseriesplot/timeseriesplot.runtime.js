@@ -20,26 +20,21 @@ TW.Runtime.Widgets.timeseriesplot= function () {
 		chart.update(updatePropertyInfo);
 		
 		if (updatePropertyInfo.TargetProperty === 'Data') {
-			 if (properties['XAxisField']) {
-		         chart.chartInfo['Data'] = new Object();
-		         chart.chartInfo['Data'].length = updatePropertyInfo.ActualDataRows.length;
-				 let data = getSingleData(updatePropertyInfo);
-				 chart.draw(data);
-			 }; 
+			 let data = getData(updatePropertyInfo,false);
+			 chart.draw(data);
 	     };
 		 
 		 for (let i=1;i <= Number(properties['NumberOfSeries']);i++) {
         	if (updatePropertyInfo.TargetProperty === 'DataSource'+i) {
         		if (updatePropertyInfo.ActualDataRows.length > 0) {
-	        		let data = getMultiData(updatePropertyInfo, i);
+	        		let data = getData(updatePropertyInfo, true);
 	        		chart.draw(data);
         		};
         	};
-		 };
-		 
+		 }; 
 	};
     
-	function getSingleData(it) {
+	function getData(it,multi) {
 		let dynamic = true;
 		 for (let i = 1; i<= properties['NumberOfSeries'];i++) {
 			 if (properties['YDataField' + i]) {
@@ -49,10 +44,10 @@ TW.Runtime.Widgets.timeseriesplot= function () {
 		 };
 		 
 		 let values;
-		 if (dynamic) {  
+		 if (dynamic && !multi) {  
 			 values = chart.getDynamicXY(it) ;
 		 } else {
-			 values = chart.getXY(it);
+			 values = chart.getXY(it,multi);
 		 };
 		 
 		 let mode = 'lines';
@@ -64,11 +59,17 @@ TW.Runtime.Widgets.timeseriesplot= function () {
         	if (properties['YDataField' + key] || dynamic) {
 	         	let trace = new Object()
 	         	trace.series = key;
-	         	trace.dataSource = 'Data';
+	         	trace.dataSource = it.TargetProperty;         	
 	         	trace.line = new Object();
 	         	trace.line.shape = properties['SeriesType' + key];
 		        trace.x = values.x;
 		        trace.y = values.y[key].values;
+		        trace.marker = new Object();
+		        trace.marker.symbol = properties['MarkerShape'];
+		        trace.marker.size = properties['MarkerSize'];
+		        if (values.y[key].markerColors.length > 0) {
+		        	trace.marker.color = values.y[key].markerColors;
+		        }
 		        if (properties['TooltipText' + key]) {
 		        	trace.text = values.y[key].text;
 		        }
@@ -79,43 +80,6 @@ TW.Runtime.Widgets.timeseriesplot= function () {
 		 };
 		 
 		 return data;
-	};
-	
-	function getMultiData(it,series) {
-		const rows = it.ActualDataRows;
-        let data = []
-        let x = [];
-        let y = [];
-        let text = [];
-        chart.chartInfo['DataSource' + series] = new Object();
-        chart.chartInfo['DataSource' + series].length = rows.length;
-        for (let i=0;i<rows.length;i++) {
-        	x.push(rows[i][properties['XDataField' + series]]);
-        	y.push(rows[i][properties['YDataField' + series]]);
-        	if (properties['TooltipText' + series]) {
-        		text.push(rows[i][properties['TooltipText' + series]]);
-        	}
-        }
-		let mode = 'lines';
-		if (properties['ShowMarkers']) {
-			mode = 'lines+markers';
-		}
-        let trace = new Object();
-        trace.dataSource = 'DataSource' + series;
-        trace.series = series;
-        trace.line = new Object();
-     	trace.line.shape = properties['SeriesType' + series];
-        trace.x = x;
-        trace.y = y;
-        if (properties['TooltipText' + series]) {
-        	trace.text = text;
-        };
-        trace.mode = mode;
-        trace.type = 'scatter';
-        data.push(trace);
-        
-        return data;
-		
 	};
 	
 }; 

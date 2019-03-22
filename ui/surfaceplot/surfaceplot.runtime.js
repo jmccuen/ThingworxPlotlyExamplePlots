@@ -16,19 +16,24 @@ TW.Runtime.Widgets.surfaceplot= function () {
 	this.updateProperty = function (updatePropertyInfo) {
 		if (updatePropertyInfo.TargetProperty === 'Data') {
 			let rows = updatePropertyInfo.ActualDataRows;
-			let zArray = [];
+			
+			
+			let z = [];
 			
 			for (let i = 0; i<rows.length;i++) {
 				let row = rows[i];
-				if (!zArray[rows[i][properties['XAxisField']]]) {
-					zArray[rows[i][properties['XAxisField']]] = [];
+				let x = properties['XAxisField'];
+				let value = properties['ZDataField1'];
+				if (!z[row[x]]) {
+					z[row[x]] = [];
 				}
-				zArray[rows[i][properties['XAxisField']]].push(rows[i][properties['ZDataField1']]);
+				z[row[x]].push(row[value]);
 			}
 			
 			let trace = new Object();
-			trace.z = zArray;
+			trace.z = z;
 			trace.type = 'surface';
+
 			
 			chart.draw([trace]);
 			

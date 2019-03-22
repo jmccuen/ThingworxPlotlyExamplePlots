@@ -11,10 +11,20 @@ TW.IDE.Widgets.timeseriesplot = function () {
 		let properties = chart.getProperties();
 		properties.name = "Timeseries Plot";
 		properties.properties['ShowMarkers'] = {
-									                'description': '',
-									                'baseType': 'BOOLEAN',
-									                'defaultValue': false
-									            };
+				'description': '',
+				'baseType': 'BOOLEAN',
+				'defaultValue': false
+			};
+		properties.properties['MarkerSize'] = {
+                'description': '',
+                'baseType': 'INTEGER',
+                'defaultValue': 6
+            };
+		properties.properties['MarkerShape'] = {
+                'description': '',
+                'baseType': 'STRING',
+                'defaultValue': 'circle'
+            };
 		
 		let options = [
 			{ value: 'linear', text: 'Linear' },

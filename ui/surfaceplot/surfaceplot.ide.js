@@ -23,15 +23,20 @@ let chart = new TWIDEChart(this,1,'3d',1,false);
 	this.afterRender = function() {
 		chart.render();
 		
-		let data = [
-			  {
-			    x: ['2013-10-04 22:23:00', '2013-11-04 22:23:00', '2013-12-04 22:23:00'],
-			    y: [1, 3, 6],
-			    type: 'scatter'
-			  }
-		];
+		let z = [];
+		for (let i=0;i<10;i++) {
+			if (!z[i]) {
+				z[i] = [];
+			}
+		    for (j=0;j<10;j++) {
+		        z[i].push(Math.random() * 100);
+			}
+		}
+		let trace = new Object();
+		trace.z = z;
+		trace.type = 'surface';
 		
-		chart.draw(data);
+		chart.draw([trace]);
 		
 	}
 
