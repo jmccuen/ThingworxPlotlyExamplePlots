@@ -31,6 +31,7 @@ TW.Runtime.Widgets.surfaceplot= function () {
 			}
 			
 			let trace = new Object();
+			trace.series = 1;
 			trace.z = z;
 			trace.type = 'surface';
 
