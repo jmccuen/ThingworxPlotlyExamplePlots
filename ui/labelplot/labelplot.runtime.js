@@ -52,12 +52,8 @@ TW.Runtime.Widgets.labelplot = function () {
 			values = chart.getXY(it,multi);
 		};
 		 
-		let mode = 'lines';
-		if (properties['ShowMarkers']) {
-			mode = 'lines+markers';
-		};
-		
-		let type = properties['ChartType'];
+			
+		let chartType = properties['ChartType'];
 		
 		let data = [];
 		for (let key in values.y) {
@@ -69,11 +65,15 @@ TW.Runtime.Widgets.labelplot = function () {
 	         	trace.dataSource = it.TargetProperty;         	
 	         	trace.line = new Object();
 	         	trace.marker = new Object();
-	         	if (type == 'line' || type == 'line+marker' || seriesType == 'area' || seriesType == 'area+marker') {
-	         		trace.line.shape = properties['SeriesMode' + key];
-			        trace.marker.symbol = properties['MarkerShape'];
-			        trace.marker.size = properties['MarkerSize'];
-	         	};
+	         	if (
+	         		(seriesType === 'chart' && (chartType == 'line' || chartType == 'line+marker' || chartType == 'area' || chartType == 'area+marker')) 
+	         		||
+	         		(seriesType === 'line' || seriesType == 'line+marker' || seriesType == 'area' || seriesType == 'area+marker')
+	         		) {
+		         		trace.line.shape = properties['SeriesMode' + key];
+				        trace.marker.symbol = properties['MarkerShape'];
+				        trace.marker.size = properties['MarkerSize'];
+		         };
 	         	
 		        trace.x = values.x;
 		        trace.y = values.y[key].values;
@@ -106,7 +106,7 @@ TW.Runtime.Widgets.labelplot = function () {
 				break;
 			case 'area':
 			case 'area+marker':
-				trace.type = 'scatter';
+				trace.type = 'scatter'; 
 				trace.fill = 'tozeroy';
 				return trace;
 				break;

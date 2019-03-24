@@ -108,7 +108,6 @@ TW.IDE.Widgets.labelplot = function () {
 		let series = thisWidget.getProperty('NumberOfSeries');
 		if (thisWidget.getProperty('ChartType') === 'bar') {
 			hasBar = true;
-			
 		};
 		for (let seriesNumber = 1; seriesNumber <= series; seriesNumber++) {
 			if (thisWidget.getProperty('SeriesType' + series) === 'bar') {
