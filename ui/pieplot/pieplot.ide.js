@@ -14,7 +14,8 @@ TW.IDE.Widgets.pieplot = function () {
                 'baseType': 'FIELDNAME',
                 'sourcePropertyName': 'Data',
                 'isBindingTarget': false,
-                'isVisible': true
+                'isVisible': true,
+                'baseTypeRestriction': 'NUMBER'
         }; 
 		
 		properties.properties.LabelsField =  {
@@ -24,6 +25,13 @@ TW.IDE.Widgets.pieplot = function () {
                 'isBindingTarget': false,
                 'isVisible': true
         };  
+		
+		properties.properties['ColorFormat'] =  {
+                'description': 'Color format',
+                'baseType': 'STATEFORMATTING',
+                'baseTypeInfotableProperty': 'Data',
+                'isVisible': true
+        };
 		
 		properties.name = "Pie Plot";
 		return properties;
@@ -45,6 +53,20 @@ TW.IDE.Widgets.pieplot = function () {
 			}];
 		chart.draw(data);
 		
-	}
+	};
+	
+	this.afterLoad = function() {
+		chart.afterLoad();
+		
+	};
+	
+	this.afterSetProperty = function(name, value) {
+		chart.afterSetProperty(name, value);
+		
+	};
+	
+	this.beforeSetProperty = function(name, value) {
+		chart.beforeSetProperty(name, value);
+	};
 
 };

@@ -15,23 +15,49 @@ TW.Runtime.Widgets.pieplot= function () {
 	};
 
 	this.updateProperty = function (updatePropertyInfo) {
+		 chart.update(updatePropertyInfo);
 		 if (updatePropertyInfo.TargetProperty === 'Data') {
 			 
-			 var data = [];
-			 var labels = [];
-			 var values = [];
-			 var label = properties["LabelsField"];
-			 var value = properties["ValuesField"];
+			 let data = [];
+			 let labels = [];
+			 let values = [];
+			 let label = properties["LabelsField"];
+			 let value = properties["ValuesField"];
 			 
 			 const rows = updatePropertyInfo.ActualDataRows;
-
+			 let formatter = properties['ColorFormat'];
+			 
+			 let line = new Object();
+			 let marker = new Object();
 	         for (let i=0;i<rows.length;i++) {
 	        	 let row = rows[i];
+	        	 
+	        	 if (formatter) {
+	                 let style = TW.getStyleFromStateFormatting({ DataRow: row, StateFormatting: formatter });
+	                 if (!line.colors) { 
+	                 	line.colors = [] 
+	                 };
+	                 if (!marker.colors) { 
+	                	 marker.colors = [] 
+	                 };
+	                 
+	                 line.colors.push(style.lineColor);
+	                 marker.colors.push(style.backgroundColor);
+	             };
+	        	 
 	        	 labels.push(row[label]);
 	        	 values.push(row[value]);
 	         }
 	         
-	         data.push({"values": values, "labels": labels, type:"pie"});
+	         let trace = new Object();
+	         
+	         trace.values = values;
+	         trace.labels = labels;
+	         trace.marker = marker;
+	         trace.line = line;
+	         trace.type = 'pie';
+	         
+	         data.push(trace);
 			 
 			 chart.draw(data);
 		 }

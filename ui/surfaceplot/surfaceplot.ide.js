@@ -38,6 +38,20 @@ let chart = new TWIDEChart(this,1,'3d',1,false);
 		
 		chart.draw([trace]);
 		
-	}
+	};
+	
+	this.afterLoad = function() {
+		chart.afterLoad();
+		
+	};
+	
+	this.afterSetProperty = function() {
+		chart.afterSetProperty();
+		
+	};
+	
+	this.beforeSetProperty = function() {
+		chart.beforeSetProperty();
+	};
 
 };

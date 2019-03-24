@@ -10,6 +10,7 @@ TW.IDE.Widgets.timeseriesplot = function () {
 		
 		let properties = chart.getProperties();
 		properties.name = "Timeseries Plot";
+		properties.properties['XAxisField']['baseTypeRestriction'] = 'DATETIME';
 		properties.properties['ShowMarkers'] = {
 				'description': '',
 				'baseType': 'BOOLEAN',
@@ -35,8 +36,9 @@ TW.IDE.Widgets.timeseriesplot = function () {
 			{ value: 'vhv', text: 'VHV Step' }
 		]
 		for (let i=1;i<=chart.MAX_SERIES;i++) {
-			properties.properties['SeriesType' + i]['defaultValue'] = 'linear';
-			properties.properties['SeriesType' + i]['selectOptions'] = options;
+			properties.properties['XDataField' + i]['baseTypeRestriction'] = 'DATETIME';
+			properties.properties['SeriesMode' + i]['defaultValue'] = 'linear';
+			properties.properties['SeriesMode' + i]['selectOptions'] = options;
 			
 		}
 		return properties;
@@ -62,7 +64,21 @@ TW.IDE.Widgets.timeseriesplot = function () {
 		
 		chart.draw(data);
 		
-	}
+	};
+	
+	this.afterLoad = function() {
+		chart.afterLoad();
+		
+	};
+	
+	this.afterSetProperty = function(name, value) {
+		chart.afterSetProperty(name, value);
+		
+	};
+	
+	this.beforeSetProperty = function(name, value) {
+		chart.beforeSetProperty(name, value);
+	};
 	
 
 };
