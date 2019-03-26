@@ -83,10 +83,11 @@ TW.Runtime.Widgets.labelplot = function () {
 		        }
 		        if (properties['TooltipText' + key]) {
 		        	trace.text = values.y[key].text;
+		        	trace.textposition = 'auto';
 		        }
 		        trace.mode = mode;
 		        if (properties['SeriesType' + key] === 'chart') {
-		        	trace = getChartType(trace,type);
+		        	trace = getChartType(trace,chartType);
 		        } else {
 		        	trace = getChartType(trace, seriesType);
 		        };
