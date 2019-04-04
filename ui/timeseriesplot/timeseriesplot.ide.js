@@ -81,5 +81,9 @@ TW.IDE.Widgets.timeseriesplot = function () {
 		chart.beforeSetProperty(name, value);
 	};
 	
+	this.widgetServices = function () {
+	    return chart.widgetServices();
+	};
+	
 
 };

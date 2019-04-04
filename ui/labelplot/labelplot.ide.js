@@ -45,7 +45,7 @@ TW.IDE.Widgets.labelplot = function () {
 			{ value: 'vhv', text: 'VHV Step' }
 		];
 		
-		let types = [
+		let types =  [
 			{ value: 'chart', text: 'Use chart type' },
 			{ value: 'line', text: 'Line' },
 			{ value: 'marker', text: 'Marker' },
@@ -59,10 +59,19 @@ TW.IDE.Widgets.labelplot = function () {
 		properties.properties['ChartType']['selectOptions'] = types;
 		
 		for (let i=1;i<=chart.MAX_SERIES;i++) {
+
+            let seriesType = {
+                'description': '',
+                'baseType': 'STRING',
+                'isVisible' : false,
+                'defaultValue': 'chart',
+                'selectOptions': types,
+                'series': i
+            };
+            
 			properties.properties['SeriesMode' + i]['defaultValue'] = 'linear';
 			properties.properties['SeriesMode' + i]['selectOptions'] = modes;
-			properties.properties['SeriesType' + i]['defaultValue'] = 'chart';
-			properties.properties['SeriesType' + i]['selectOptions'] = types;
+			properties.properties['SeriesType' + i] = seriesType
 		}
 		
 		let barMode = {

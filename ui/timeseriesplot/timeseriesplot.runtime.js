@@ -14,6 +14,10 @@ TW.Runtime.Widgets.timeseriesplot= function () {
 		chart.render();
 	};
 	
+	this.serviceInvoked = function(serviceName) {
+		chart.serviceInvoked(serviceName);
+	};
+	
 
 	this.updateProperty = function (updatePropertyInfo) {
 		
