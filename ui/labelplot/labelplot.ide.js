@@ -140,11 +140,9 @@ TW.IDE.Widgets.labelplot = function () {
 			}
 		}
 		thisWidget.updatedProperties();
+		
 	};
 	
-	this.beforeSetProperty = function(name,value) {
-		chart.beforeSetProperty(name,value);
-	};
 	
 
 };
