@@ -91,6 +91,7 @@ TW.Runtime.Widgets.labelplot = function () {
 		        } else {
 		        	trace = getChartType(trace, seriesType);
 		        };
+		        
 		        data.push(trace);
         	};
 		};

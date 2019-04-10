@@ -142,7 +142,5 @@ TW.IDE.Widgets.labelplot = function () {
 		thisWidget.updatedProperties();
 		
 	};
-	
-	
 
 };
