@@ -43,21 +43,21 @@ TW.IDE.Widgets.pieplot = function () {
 	};
 	
 	this.afterRender = function() {
-		chart.afterRender();
+		return chart.afterRender();
 	};
 	
 	this.afterLoad = function() {
-		chart.afterLoad();
+		return chart.afterLoad();
 		
 	};
 	
 	this.afterSetProperty = function(name, value) {
-		chart.afterSetProperty(name, value);
+		return chart.afterSetProperty(name, value);
 		
 	};
 	
 	this.beforeSetProperty = function(name, value) {
-		chart.beforeSetProperty(name, value);
+		return chart.beforeSetProperty(name, value);
 	};
 
 };

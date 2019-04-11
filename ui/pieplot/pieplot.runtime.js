@@ -60,5 +60,6 @@ TW.Runtime.Widgets.pieplot= function () {
 			 
 			 chart.draw(data);
 		 }
+		 return;
 	}
 };

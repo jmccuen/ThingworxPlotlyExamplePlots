@@ -92,7 +92,7 @@ TW.IDE.Widgets.labelplot = function () {
 	};
 	
 	this.afterRender = function() {
-		chart.afterRender();
+		return chart.afterRender();
 	};
 	
 	this.afterLoad = function() {
@@ -127,5 +127,10 @@ TW.IDE.Widgets.labelplot = function () {
 		thisWidget.updatedProperties();
 		
 	};
+	
+	this.beforeSetProperty = function(name,value) {
+		return chart.beforeSetProperty(name,value);
+	}
+
 
 };

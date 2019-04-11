@@ -8,7 +8,7 @@ TW.Runtime.Widgets.surfaceplot= function () {
 	};
 
 	this.afterRender = function () {
-		chart.afterRender();
+		return chart.afterRender();
 	};
 	
 
@@ -39,6 +39,7 @@ TW.Runtime.Widgets.surfaceplot= function () {
 			chart.draw([trace]);
 			
 		}
+		return;
 		
 	}
 	

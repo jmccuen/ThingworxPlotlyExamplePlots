@@ -10,11 +10,11 @@ TW.Runtime.Widgets.timeseriesplot= function () {
 	};
 
 	this.afterRender = function () {
-		chart.afterRender();
+		return chart.afterRender();
 	};
 	
 	this.serviceInvoked = function(serviceName) {
-		chart.serviceInvoked(serviceName);
+		return chart.serviceInvoked(serviceName);
 	};
 	
 

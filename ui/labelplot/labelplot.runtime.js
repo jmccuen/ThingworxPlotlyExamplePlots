@@ -12,6 +12,7 @@ TW.Runtime.Widgets.labelplot = function () {
 	this.afterRender = function () {
 		chart.afterRender();
 		chart.layout.barmode = properties['BarMode'];
+		return;
 	};
 	
 
