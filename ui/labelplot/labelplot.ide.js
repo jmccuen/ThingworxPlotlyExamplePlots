@@ -46,13 +46,13 @@ TW.IDE.Widgets.labelplot = function () {
 		
 		let types =  [
 			{ value: 'chart', text: 'Use chart type' },
-			{ value: 'line', text: 'Line' },
-			{ value: 'marker', text: 'Marker' },
-			{ value: 'line+marker', text: 'Line/Marker' },
+			{ value: 'lines', text: 'Line' },
+			{ value: 'markers', text: 'Marker' },
+			{ value: 'lines+markers', text: 'Line/Marker' },
 			{ value: 'bar', text: 'Bar' },
 			{ value: 'horizontalBar', text: 'Horizontal Bar' },
-			{ value: 'area', text: 'Area' },
-			{ value: 'area+marker', text: 'Area/Marker' }
+			{ value: 'areas', text: 'Area' },
+			{ value: 'areas+markers', text: 'Area/Marker' }
 		];
 		
 		properties.properties['ChartType']['selectOptions'] = types;

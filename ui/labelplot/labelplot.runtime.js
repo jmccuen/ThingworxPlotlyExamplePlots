@@ -65,15 +65,9 @@ TW.Runtime.Widgets.labelplot = function () {
 	         	trace.dataSource = it.TargetProperty;         	
 	         	trace.line = new Object();
 	         	trace.marker = new Object();
-	         	if (
-	         		(seriesType === 'chart' && (chartType == 'line' || chartType == 'line+marker' || chartType == 'area' || chartType == 'area+marker')) 
-	         		||
-	         		(seriesType === 'line' || seriesType == 'line+marker' || seriesType == 'area' || seriesType == 'area+marker')
-	         		) {
-		         		trace.line.shape = properties['SeriesMode' + key];
-				        trace.marker.symbol = properties['MarkerShape'];
-				        trace.marker.size = properties['MarkerSize'];
-		         };
+	         	trace.line.shape = properties['SeriesMode' + key];
+			    trace.marker.symbol = properties['MarkerShape'];
+			    trace.marker.size = properties['MarkerSize'];
 	         	
 		        trace.x = values.x;
 		        trace.y = values.y[key].values;
@@ -85,7 +79,6 @@ TW.Runtime.Widgets.labelplot = function () {
 		        	trace.text = values.y[key].text;
 		        	trace.textposition = 'auto';
 		        }
-		        trace.mode = mode;
 		        if (properties['SeriesType' + key] === 'chart') {
 		        	trace = getChartType(trace,chartType);
 		        } else {
@@ -104,23 +97,37 @@ TW.Runtime.Widgets.labelplot = function () {
 			case 'horizontalBar':
 				trace.type = 'bar';
 				trace.orientation = 'h';
-				return trace;
 				break;
-			case 'area':
-			case 'area+marker':
+			case 'areas':
+				trace.mode = 'lines';
 				trace.type = 'scatter'; 
 				trace.fill = 'tozeroy';
-				return trace;
+				break;
+			case 'areas+markers':
+				trace.mode = 'lines+markers';
+				trace.type = 'scatter'; 
+				trace.fill = 'tozeroy';
+				break;
+			case 'lines':
+				trace.mode = 'lines';
+				trace.type = 'scatter';
+				break;
+			case 'lines+markers':
+				trace.mode = 'lines+markers';
+				trace.type = 'scatter';
+				break;
+			case 'markers':
+				trace.mode = 'markers';
+				trace.type = 'scatter';
 				break;
 			case 'bar':
 				trace.type = 'bar';
-				return trace;
 				break
 			default:
 				trace.type = 'scatter';
-				return trace;
-				break;
+				break;	
 		};
+		return trace;
 	};
 	
 }; 
