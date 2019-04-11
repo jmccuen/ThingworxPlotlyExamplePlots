@@ -1,16 +1,14 @@
 TW.IDE.Widgets.labelplot = function () {
 
 	let thisWidget = this;
-	let chart = new TWIDEChart(this,64,'2d',4,true);
+	let chart = new TWIDEChart(this,"Label Plot",'widget-labelplot', 64,'2d',4,true);
 	
 	this.widgetIconUrl = function() {
 		return chart.widgetIconUrl();
 	};
 	this.widgetProperties = function () {
 		
-		let properties = chart.getProperties();
-		properties.name = "Label Plot";
-		
+		let properties = chart.widgetProperties();		
 		properties.properties['ChartType'] = {
             'description': TW.IDE.I18NController.translate('tw.labelchart-ide.properties.chart-type.description'),
             'baseType': 'STRING',
@@ -90,7 +88,7 @@ TW.IDE.Widgets.labelplot = function () {
 	};
 
 	this.renderHtml = function () {
-		return chart.renderHtml('widget-labelplot', 'Label Plot');
+		return chart.renderHtml();
 	};
 	
 	this.afterRender = function() {

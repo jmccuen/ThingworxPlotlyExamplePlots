@@ -3,22 +3,21 @@ TW.Runtime.Widgets.labelplot = function () {
 	
 	let properties = this.properties;
 	let thisWidget = this;
-	let chart = new TWRuntimeChart(thisWidget);
+	let chart = new TWRuntimeChart(thisWidget, 'widget-labelplot');
 	
 	this.renderHtml = function () {
-		return 	'<div class="widget-content widget-labelplot">' +
-				'</div>';
+		return 	chart.renderHtml();
 	};
 
 	this.afterRender = function () {
-		chart.render();
+		chart.afterRender();
 		chart.layout.barmode = properties['BarMode'];
 	};
 	
 
 	this.updateProperty = function (updatePropertyInfo) {
 		
-		chart.update(updatePropertyInfo);
+		chart.updateProperty(updatePropertyInfo);
 		
 		if (updatePropertyInfo.TargetProperty === 'Data') {
 			 let data = getData(updatePropertyInfo,false);

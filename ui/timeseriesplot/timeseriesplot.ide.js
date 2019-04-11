@@ -1,6 +1,6 @@
 TW.IDE.Widgets.timeseriesplot = function () {
 
-	let chart = new TWIDEChart(this,64,'2d',4,true);
+	let chart = new TWIDEChart(this,'Timeseries Plot', 'widget-timeseriesplot', 64,'2d',4,true);
 	
 	this.widgetIconUrl = function() {
 		return chart.widgetIconUrl();
@@ -8,7 +8,7 @@ TW.IDE.Widgets.timeseriesplot = function () {
 	
 	this.widgetProperties = function () {
 		
-		let properties = chart.getProperties();
+		let properties = chart.widgetProperties();
 		properties.name = "Timeseries Plot";
 		properties.properties['XAxisField']['baseTypeRestriction'] = 'DATETIME';
 		properties.properties['ShowMarkers'] = {

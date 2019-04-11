@@ -2,20 +2,19 @@ TW.Runtime.Widgets.pieplot= function () {
 	
 	let thisWidget = this;
 	let properties = this.properties;
-	let chart = new TWRuntimeChart(thisWidget);
+	let chart = new TWRuntimeChart(thisWidget,'widget-pieplot');
 	
 	this.renderHtml = function () {
-		return 	'<div class="widget-content widget-pieplot">' +
-				'</div>';
+		return 	chart.renderHtml();
 	};
 
 	this.afterRender = function () {
-		chart.render();
+		chart.afterRender();
 		
 	};
 
 	this.updateProperty = function (updatePropertyInfo) {
-		 chart.update(updatePropertyInfo);
+		 chart.updateProperty(updatePropertyInfo);
 		 if (updatePropertyInfo.TargetProperty === 'Data') {
 			 
 			 let data = [];

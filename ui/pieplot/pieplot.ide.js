@@ -1,13 +1,13 @@
 TW.IDE.Widgets.pieplot = function () {
 
-	let chart = new TWIDEChart(this,0,'pie',0,false);
+	let chart = new TWIDEChart(this,'Pie Plot','widget-pieplot',0,'pie',0,false);
 	
 	this.widgetIconUrl = function() {
 		return chart.widgetIconUrl();
 	};
 
 	this.widgetProperties = function () {
-		let properties = chart.getProperties();
+		let properties = chart.widgetProperties();
 		
 		properties.properties.ValuesField =  {
                 'description': 'Values Field',

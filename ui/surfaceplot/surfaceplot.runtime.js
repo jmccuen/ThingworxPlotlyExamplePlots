@@ -1,19 +1,19 @@
 TW.Runtime.Widgets.surfaceplot= function () {
 	let properties = this.properties;
 	let thisWidget = this;
-	let chart = new TWRuntimeChart(thisWidget);
+	let chart = new TWRuntimeChart(thisWidget,'widget-surfaceplot');
 	
 	this.renderHtml = function () {
-		return 	'<div class="widget-content widget-surfaceplot">' +
-				'</div>';
+		return 	chart.renderHtml()
 	};
 
 	this.afterRender = function () {
-		chart.render();
+		chart.afterRender();
 	};
 	
 
 	this.updateProperty = function (updatePropertyInfo) {
+		chart.updateProperty(updatePropertyInfo);
 		if (updatePropertyInfo.TargetProperty === 'Data') {
 			let rows = updatePropertyInfo.ActualDataRows;
 			

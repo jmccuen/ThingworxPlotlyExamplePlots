@@ -1,6 +1,6 @@
 TW.IDE.Widgets.surfaceplot = function () {
 
-let chart = new TWIDEChart(this,1,'3d',1,false);
+let chart = new TWIDEChart(this,'Surface Plot', 'widget-surfaceplot', 1,'3d',1,false);
 	
 	this.widgetIconUrl = function() {
 		return chart.widgetIconUrl();
@@ -8,14 +8,13 @@ let chart = new TWIDEChart(this,1,'3d',1,false);
 	
 	this.widgetProperties = function () {
 		
-		let properties = chart.getProperties();
-		properties.name = "Surface Plot";
+		let properties = chart.widgetProperties();
 		return properties;
 		
 	};
 
 	this.renderHtml = function () {
-		return chart.renderHtml('widget-surfaceplot', 'Surface Plot');
+		return chart.renderHtml();
 	};
 	
 	this.afterRender = function() {
@@ -27,13 +26,13 @@ let chart = new TWIDEChart(this,1,'3d',1,false);
 		
 	};
 	
-	this.afterSetProperty = function() {
-		chart.afterSetProperty();
+	this.afterSetProperty = function(name,value) {
+		chart.afterSetProperty(name,value);
 		
 	};
 	
-	this.beforeSetProperty = function() {
-		chart.beforeSetProperty();
+	this.beforeSetProperty = function(name,value) {
+		chart.beforeSetProperty(name,value);
 	};
 
 };

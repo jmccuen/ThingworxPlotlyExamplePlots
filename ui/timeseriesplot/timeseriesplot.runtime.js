@@ -3,15 +3,14 @@ TW.Runtime.Widgets.timeseriesplot= function () {
 	
 	let properties = this.properties;
 	let thisWidget = this;
-	let chart = new TWRuntimeChart(thisWidget);
+	let chart = new TWRuntimeChart(thisWidget, 'widget-timeseriesplot');
 	
 	this.renderHtml = function () {
-		return 	'<div class="widget-content widget-timeseriesplot">' +
-				'</div>';
+		return 	chart.renderHtml();
 	};
 
 	this.afterRender = function () {
-		chart.render();
+		chart.afterRender();
 	};
 	
 	this.serviceInvoked = function(serviceName) {
@@ -21,7 +20,7 @@ TW.Runtime.Widgets.timeseriesplot= function () {
 
 	this.updateProperty = function (updatePropertyInfo) {
 		
-		chart.update(updatePropertyInfo);
+		chart.updateProperty(updatePropertyInfo);
 		
 		if (updatePropertyInfo.TargetProperty === 'Data') {
 			 let data = getData(updatePropertyInfo,false);
