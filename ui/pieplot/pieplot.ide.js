@@ -3,7 +3,7 @@ TW.IDE.Widgets.pieplot = function () {
 	let chart = new TWIDEChart(this,0,'pie',0,false);
 	
 	this.widgetIconUrl = function() {
-		return  "'../Common/extensions/PlotlyPlots/ui/pieplot/plotlyicon.png'";
+		return chart.widgetIconUrl();
 	};
 
 	this.widgetProperties = function () {
@@ -39,20 +39,11 @@ TW.IDE.Widgets.pieplot = function () {
 
 
 	this.renderHtml = function () {
-		return 	'<div class="widget-content widget-pieplot">' +
-				'</div>';
+		return chart.renderHtml('widget-pieplot', 'Pie Plot');
 	};
 	
 	this.afterRender = function() {
-		chart.render();
-		
-		let data = [{
-			  values: [19, 26, 55],
-			  labels: ['Residential', 'Non-Residential', 'Utility'],
-			  type: 'pie'
-			}];
-		chart.draw(data);
-		
+		chart.afterRender();
 	};
 	
 	this.afterLoad = function() {
